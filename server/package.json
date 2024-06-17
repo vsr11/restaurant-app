@@ -2,7 +2,7 @@
   "name": "restaurant-app-server",
   "version": "0.0.1",
   "description": "A simple restaurant app made with NodeJS and Mongoose (server).",
-  "author":"Vittorio Rossitto <vittorio.s.rossitto@gmail.com>",
+  "author": "Vittorio Rossitto <vittorio.s.rossitto@gmail.com>",
   "main": "index.js",
   "scripts": {
     "start": "nodemon index.js",
