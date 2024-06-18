@@ -1,7 +1,7 @@
 {
   "name": "restaurant-app-client",
   "version": "0.0.1",
-  "description": "A simple restaurant app made with NodeJS and Mongoose (client).",
+  "description": "A simple restaurant app made with the MERN stack (client)",
   "author": "Vittorio Rossitto <vittorio.s.rossitto@gmail.com>",
   "license": "MIT",
   "private": true,

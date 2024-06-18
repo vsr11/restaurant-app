@@ -1,7 +1,7 @@
 {
   "name": "restaurant-app-server",
   "version": "0.0.1",
-  "description": "A simple restaurant app made with NodeJS and Mongoose (server).",
+  "description": "A simple restaurant app made with the MERN stack (server)",
   "author": "Vittorio Rossitto <vittorio.s.rossitto@gmail.com>",
   "main": "index.js",
   "type": "module",
