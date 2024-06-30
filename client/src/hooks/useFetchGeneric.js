@@ -2,26 +2,34 @@ import { useEffect, useState } from "react";
 
 export default function useFetchGeneric(
   url,
+  body = {},
   defaultValue = [],
-  method = "post",
-  body = {}
+  method = "post"
 ) {
   const [data, setData] = useState(defaultValue);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     (async () => {
       try {
+        if (method !== "get") {
+          if (!body || Object.keys(body).length < 1 || body.length < 1) {
+            return;
+          }
+        }
+
         let res = await fetch(url, {
-          method: method.toUpperCase(),
+          method,
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(body),
         });
         res = await res.json();
         setData(res);
+        setIsLoading(false);
       } catch (e) {
         console.log(e);
       }
     })();
   }, [url, method, body]);
-  return data;
+  return [data, isLoading];
 }
