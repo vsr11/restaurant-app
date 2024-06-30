@@ -1,4 +1,7 @@
 export function form2object(formData) {
+  if (!formData || !(formData instanceof FormData)) {
+    return;
+  }
   return Object.fromEntries(
     Array.from(formData.keys()).map((key) => [
       key,
