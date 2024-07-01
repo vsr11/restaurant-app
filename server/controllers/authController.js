@@ -5,7 +5,11 @@ const router = Router();
 
 router.post("/register", async (req, res, next) => {
   try {
-    const user = await User.create(req.body);
+    let user = await User.findOne({ email: req.body.email });
+    if (user) {
+      return;
+    }
+    user = await User.create(req.body);
     return res.status(201).json(user);
   } catch (e) {
     next(e);
