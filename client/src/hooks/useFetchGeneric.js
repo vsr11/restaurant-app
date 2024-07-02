@@ -27,6 +27,7 @@ export default function useFetchGeneric(
         setData(res);
         setIsLoading(false);
       } catch (e) {
+        setIsLoading(false);
         console.log(e);
       }
     })();
