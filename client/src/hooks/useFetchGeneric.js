@@ -12,14 +12,14 @@ export default function useFetchGeneric(
   useEffect(() => {
     (async () => {
       try {
-        if (method !== "get") {
+        if (method.toUpperCase() !== "GET") {
           if (!body || Object.keys(body).length < 1 || body.length < 1) {
             return;
           }
         }
 
         let res = await fetch(url, {
-          method,
+          method: method.toUpperCase(),
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(body),
         });
