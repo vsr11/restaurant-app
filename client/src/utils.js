@@ -15,6 +15,7 @@ export function form2object(formData) {
 export function isEmpty(data) {
   if (!data || Object.keys(data).length < 1 || data.length < 1) {
     return true;
+  } else {
+    return false;
   }
-  return false;
 }
