@@ -18,7 +18,7 @@ export default function Register() {
     setReg(data);
 
     if (isEmpty(d)) {
-      c.setErr("user exists");
+      c.setMessage("user exists");
     } else {
       navigate("/login");
     }
