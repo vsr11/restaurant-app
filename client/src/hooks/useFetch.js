@@ -1,6 +1,6 @@
-import useFetchGeneric from "./useFetchGeneric.js";
+import useFetchFn from "./useFetchFn.js";
 
 export default function useFetch(url, defaultValue = []) {
-  const [data, isLoading] = useFetchGeneric(url, {}, defaultValue, "get");
+  const [data, isLoading] = useFetchFn(url, {}, defaultValue, "get");
   return [data, isLoading];
 }
