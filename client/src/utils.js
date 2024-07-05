@@ -2,6 +2,7 @@ export function form2object(formData) {
   if (!formData || !(formData instanceof FormData)) {
     return;
   }
+
   return Object.fromEntries(
     Array.from(formData.keys()).map((key) => [
       key,
@@ -13,7 +14,20 @@ export function form2object(formData) {
 }
 
 export function isEmpty(data) {
-  if (!data || Object.keys(data).length < 1 || data.length < 1) {
+  if (
+    !data ||
+    Object.keys(data).length < 1 ||
+    data.length < 1 ||
+    isServerError(data)
+  ) {
+    return true;
+  } else {
+    return false;
+  }
+}
+
+export function isServerError(data) {
+  if (data.hasOwnProperty("type") && data.type === "error") {
     return true;
   } else {
     return false;
