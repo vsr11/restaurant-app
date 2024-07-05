@@ -7,7 +7,7 @@ router.post("/register", async (req, res, next) => {
   try {
     let user = await User.findOne({ email: req.body.email });
     if (user) {
-      return res.json(null);
+      return res.json({ type: "error", message: "User exists!" });
     }
 
     user = await User.create(req.body);
