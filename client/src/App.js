@@ -11,8 +11,8 @@ export default function App() {
       <ErrorProvider>
         <Header />
         <RouterProvider router={router} />
-        <Footer />
       </ErrorProvider>
+      <Footer />
     </div>
   );
 }
