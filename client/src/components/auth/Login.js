@@ -6,7 +6,7 @@ import { form2object } from "../../utils.js";
 export default function Login() {
   const [login, setLogin] = useState({});
 
-  useFetchGeneric(SERVER_URL + "auth/login", login);
+  useFetchGeneric(`${SERVER_URL}/auth/login`, login);
 
   function onSubmitHandler(e) {
     e.preventDefault();
