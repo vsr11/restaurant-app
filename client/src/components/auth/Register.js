@@ -4,11 +4,13 @@ import useFetchGeneric from "../../hooks/useFetchGeneric.js";
 import { SERVER_URL } from "../../constants.js";
 import { form2object, isEmpty } from "../../utils.js";
 import ErrorContext from "../../contexts/ErrorContext.js";
+import AuthContext from "../../contexts/AuthContext.js";
 
 export default function Register() {
   const c = useContext(ErrorContext);
   const navigate = useNavigate();
   const [reg, setReg] = useState({});
+  const ac = useContext(AuthContext);
 
   const [d] = useFetchGeneric(`${SERVER_URL}/auth/register`, reg);
 
@@ -19,12 +21,16 @@ export default function Register() {
   }
 
   useEffect(() => {
+    if (!isEmpty(ac?.auth)) {
+      navigate("/");
+    }
+
     if (!isEmpty(d)) {
       navigate("/login");
     } else {
       c?.setMessage(d?.message);
     }
-  }, [d]);
+  }, [d, c, ac, navigate]);
 
   return (
     <>
