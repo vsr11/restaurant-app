@@ -1,28 +1,36 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import useFetchGeneric from "../../hooks/useFetchGeneric.js";
 import { SERVER_URL } from "../../constants.js";
 import { form2object, isEmpty } from "../../utils.js";
 import ErrorContext from "../../contexts/ErrorContext.js";
+import AuthContext from "../../contexts/AuthContext.js";
 
 export default function Register() {
-  const [reg, setReg] = useState({});
-  let c = useContext(ErrorContext);
+  const c = useContext(ErrorContext);
   const navigate = useNavigate();
+  const [reg, setReg] = useState({});
+  const ac = useContext(AuthContext);
 
-  let [d] = useFetchGeneric(SERVER_URL + "auth/register", reg);
+  const [d] = useFetchGeneric(`${SERVER_URL}/auth/register`, reg);
 
   function onSubmitHandler(e) {
     e.preventDefault();
     const data = form2object(new FormData(e.target));
     setReg(data);
-
-    if (isEmpty(d)) {
-      c.setMessage("user exists");
-    } else {
-      navigate("/login");
-    }
   }
+
+  useEffect(() => {
+    if (!isEmpty(ac?.auth)) {
+      navigate("/");
+    }
+
+    if (!isEmpty(d)) {
+      navigate("/login");
+    } else {
+      c?.setMessage(d?.message);
+    }
+  }, [d, c, ac, navigate]);
 
   return (
     <>

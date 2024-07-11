@@ -1,18 +1,35 @@
-import { useState } from "react";
 import useFetchGeneric from "../../hooks/useFetchGeneric.js";
-import { SERVER_URL } from "../../constants.js";
-import { form2object } from "../../utils.js";
+import AuthContext from "../../contexts/AuthContext.js";
+import { useContext, useEffect, useState } from "react";
+import { SERVER_URL, AUTH_COOKIE_NAME } from "../../constants.js";
+import { form2object, isEmpty } from "../../utils.js";
+import { useNavigate } from "react-router-dom";
 
 export default function Login() {
   const [login, setLogin] = useState({});
+  const c = useContext(AuthContext);
+  const navigate = useNavigate();
 
-  useFetchGeneric(SERVER_URL + "auth/login", login);
+  const [d] = useFetchGeneric(`${SERVER_URL}/auth/login`, login);
 
   function onSubmitHandler(e) {
     e.preventDefault();
     const data = form2object(new FormData(e.target));
     setLogin(data);
   }
+
+  useEffect(() => {
+    if (!isEmpty(c?.auth)) {
+      navigate("/");
+    }
+
+    if (d.ok) {
+      const { name, email } = d.data;
+      const userData = JSON.stringify({ name, email });
+      c.setAuth(userData);
+      localStorage.setItem(AUTH_COOKIE_NAME, userData);
+    }
+  }, [d, c, navigate]);
 
   return (
     <>

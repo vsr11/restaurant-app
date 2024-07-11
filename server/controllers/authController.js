@@ -5,13 +5,37 @@ const router = Router();
 
 router.post("/register", async (req, res, next) => {
   try {
+    let userData = {};
     let user = await User.findOne({ email: req.body.email });
+
     if (user) {
-      return res.json(null);
+      return res.json({ ok: false, data: "User exists!" });
     }
 
     user = await User.create(req.body);
-    return res.status(201).json(user);
+
+    if (user) {
+      const { email, name } = user;
+      userData = { email, name };
+    }
+
+    return res.status(201).json({ ok: true, data: userData });
+  } catch (e) {
+    next(e);
+  }
+});
+
+router.post("/login", async (req, res, next) => {
+  try {
+    let userData = {};
+    let user = await User.findOne({ email: req.body.email });
+    if (user) {
+      const { email, name } = user;
+      userData = { email, name };
+      return res.json({ ok: true, data: userData });
+    } else {
+      return res.json({ ok: false, data: user });
+    }
   } catch (e) {
     next(e);
   }
