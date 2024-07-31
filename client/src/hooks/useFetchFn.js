@@ -12,6 +12,7 @@ export default function useFetchFn(
   useEffect(() => {
     (async () => {
       try {
+        let ignore = false;
         if (method.toUpperCase() !== "GET") {
           if (!body || Object.keys(body).length < 1 || body.length < 1) {
             return;
@@ -24,8 +25,13 @@ export default function useFetchFn(
           body: JSON.stringify(body),
         });
         res = await res.json();
-        setData(res);
-        setIsLoading(false);
+        if (!ignore) {
+          setData(res);
+          setIsLoading(false);
+        }
+        return () => {
+          ignore = true;
+        };
       } catch (e) {
         setIsLoading(false);
         console.log(e);
