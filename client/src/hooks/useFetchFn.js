@@ -22,7 +22,7 @@ export default function useFetchFn(
         let res = await fetch(url, {
           method: method.toUpperCase(),
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(body),
+          body: method.toUpperCase() === "GET" ? null : JSON.stringify(body),
         });
         res = await res.json();
         if (!ignore) {
