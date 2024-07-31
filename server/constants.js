@@ -7,3 +7,5 @@ export const DB_NAME = "rest";
 export const defaults = {
   account_role: "USER",
 };
+
+export const schemaOptions = { timestamps: true, toJSON: { virtuals: true } };
