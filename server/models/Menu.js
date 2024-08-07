@@ -9,4 +9,6 @@ const menuSchema = new mongoose.Schema({
   image: String,
 });
 
+menuSchema.index({ "$**": "text" });
+
 export default mongoose.model("Menu", menuSchema);
