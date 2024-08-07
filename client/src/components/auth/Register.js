@@ -25,10 +25,10 @@ export default function Register() {
       navigate("/");
     }
 
-    if (!isEmpty(d)) {
+    if (d?.ok) {
       navigate("/login");
     } else {
-      c?.setMessage(d?.message);
+      c?.setMessage(d?.data);
     }
   }, [d, c, ac, navigate]);
 
