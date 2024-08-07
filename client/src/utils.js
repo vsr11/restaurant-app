@@ -1,6 +1,10 @@
 export function form2object(formData) {
-  if (!formData || !(formData instanceof FormData)) {
+  if (!formData || !(formData instanceof Object)) {
     return;
+  }
+
+  if (!(formData instanceof FormData)) {
+    formData = new FormData(formData);
   }
 
   return Object.fromEntries(
