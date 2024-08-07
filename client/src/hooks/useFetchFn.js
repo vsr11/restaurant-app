@@ -8,6 +8,12 @@ export default function useFetchFn(
 ) {
   const [data, setData] = useState(defaultValue);
   const [isLoading, setIsLoading] = useState(true);
+  let deps = [];
+  if (method.toUpperCase() !== "GET") {
+    deps = [url, body];
+  } else {
+    deps = [url];
+  }
 
   useEffect(() => {
     (async () => {
@@ -24,11 +30,14 @@ export default function useFetchFn(
           headers: { "Content-Type": "application/json" },
           body: method.toUpperCase() === "GET" ? null : JSON.stringify(body),
         });
+
         res = await res.json();
+
         if (!ignore) {
           setData(res);
           setIsLoading(false);
         }
+
         return () => {
           ignore = true;
         };
@@ -37,6 +46,6 @@ export default function useFetchFn(
         console.log(e);
       }
     })();
-  }, [url, method, body]);
+  }, deps);
   return [data, isLoading];
 }
