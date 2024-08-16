@@ -5,7 +5,7 @@ export default function errorHandler(err, req, res, next) {
     err = Object.values(err.errors).map((x) => x.message)[2];
   }
 
-  if (!err instanceof Error) {
+  if (!(err instanceof Error)) {
     err = new Error(err);
   }
 
