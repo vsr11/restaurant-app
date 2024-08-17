@@ -6,6 +6,7 @@ import Logout from "./components/auth/Logout.js";
 import NotFound from "./components/common/NotFound.js";
 import Search from "./components/Search.js";
 import Category from "./components/Category.js";
+import Menu from "./components/Menu.js";
 
 const router = createBrowserRouter([
   {
@@ -13,6 +14,10 @@ const router = createBrowserRouter([
     element: <Main />,
     errorElement: <NotFound />,
     children: [
+      {
+        index: true,
+        element: <Menu />,
+      },
       {
         path: "register",
         element: <Register />,
