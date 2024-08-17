@@ -1,7 +1,7 @@
 import useFetch from "../hooks/useFetch.js";
 import { SERVER_URL } from "../constants.js";
 import { useParams } from "react-router-dom";
-import Loading from "./Loading.js";
+import Loading from "./common/Loading.js";
 
 export default function Category() {
   let { cat } = useParams();

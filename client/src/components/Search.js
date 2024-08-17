@@ -2,7 +2,7 @@ import useFetch from "../hooks/useFetch.js";
 import { SERVER_URL } from "../constants.js";
 import { useSearchParams } from "react-router-dom";
 import { form2object } from "../utils.js";
-import Loading from "./Loading.js";
+import Loading from "./common/Loading.js";
 
 export default function Search() {
   const [searchParams, setSearchParams] = useSearchParams();
