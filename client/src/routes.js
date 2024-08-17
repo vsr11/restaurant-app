@@ -5,6 +5,7 @@ import Login from "./components/auth/Login.js";
 import Logout from "./components/auth/Logout.js";
 import NotFound from "./components/NotFound.js";
 import Search from "./components/Search.js";
+import Category from "./components/Category.js";
 
 const router = createBrowserRouter([
   {
@@ -27,6 +28,10 @@ const router = createBrowserRouter([
       {
         path: "search",
         element: <Search />,
+      },
+      {
+        path: "category/:cat?",
+        element: <Category />,
       },
     ],
   },
