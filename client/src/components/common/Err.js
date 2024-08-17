@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import ErrorContext from "../contexts/ErrorContext.js";
+import ErrorContext from "../../contexts/ErrorContext.js";
 
 export default function Err() {
   const error = useContext(ErrorContext);
