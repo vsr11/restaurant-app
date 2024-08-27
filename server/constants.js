@@ -8,4 +8,4 @@ export const defaults = {
   account_role: "USER",
 };
 
-export const schemaOptions = { timestamps: true, toJSON: { virtuals: true } };
+export const schemaOptions = { toJSON: { virtuals: true } };
