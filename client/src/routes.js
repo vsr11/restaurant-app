@@ -7,6 +7,7 @@ import NotFound from "./components/common/NotFound.js";
 import Search from "./components/Search.js";
 import Category from "./components/Category.js";
 import Menu from "./components/Menu.js";
+import View from "./components/View.js";
 
 const router = createBrowserRouter([
   {
@@ -37,6 +38,10 @@ const router = createBrowserRouter([
       {
         path: "category/:cat?",
         element: <Category />,
+      },
+      {
+        path: "menu/view/:id?",
+        element: <View />,
       },
     ],
   },
