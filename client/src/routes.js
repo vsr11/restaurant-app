@@ -8,6 +8,7 @@ import Search from "./components/Search.js";
 import Category from "./components/Category.js";
 import Menu from "./components/Menu.js";
 import View from "./components/View.js";
+import AddMenuItem from "./components/admin/menu/AddMenuItem.js";
 
 const router = createBrowserRouter([
   {
@@ -42,6 +43,15 @@ const router = createBrowserRouter([
       {
         path: "menu/view/:id?",
         element: <View />,
+      },
+      {
+        path: "admin",
+        children: [
+          {
+            path: "menu",
+            children: [{ path: "add", element: <AddMenuItem /> }],
+          },
+        ],
       },
     ],
   },

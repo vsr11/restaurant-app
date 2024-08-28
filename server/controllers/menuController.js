@@ -36,4 +36,22 @@ router.get("/search", async (req, res, next) => {
   }
 });
 
+router.post("/add", async (req, res, next) => {
+  try {
+    let menu = await Menu.find({ name: req?.body?.name }).lean();
+    if (isEmpty(menu)) {
+      menu = await Menu.create(req?.body);
+      if (!isEmpty(menu)) {
+        return res.json({ ok: true, data: req?.body });
+      } else {
+        return res.json({ ok: false, data: null });
+      }
+    } else {
+      return res.json({ ok: false, data: req?.body });
+    }
+  } catch (e) {
+    next(e);
+  }
+});
+
 export default router;
