@@ -2,7 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import useFetchGeneric from "../../hooks/useFetchGeneric.js";
 import { SERVER_URL } from "../../constants.js";
-import { form2object, isEmpty } from "../../utils.js";
+import { form2object, isEmpty } from "restaurant-app-common";
 import ErrorContext from "../../contexts/ErrorContext.js";
 import AuthContext from "../../contexts/AuthContext.js";
 

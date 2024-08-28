@@ -2,7 +2,7 @@ import useFetchGeneric from "../../hooks/useFetchGeneric.js";
 import AuthContext from "../../contexts/AuthContext.js";
 import { useContext, useEffect, useState } from "react";
 import { SERVER_URL, AUTH_COOKIE_NAME } from "../../constants.js";
-import { form2object, isEmpty } from "../../utils.js";
+import { form2object, isEmpty } from "restaurant-app-common";
 import { useNavigate } from "react-router-dom";
 
 export default function Login() {

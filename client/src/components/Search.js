@@ -1,7 +1,7 @@
 import useFetch from "../hooks/useFetch.js";
 import { SERVER_URL } from "../constants.js";
 import { useSearchParams } from "react-router-dom";
-import { form2object } from "../utils.js";
+import { form2object } from "restaurant-app-common";
 import Loading from "./common/Loading.js";
 
 export default function Search() {
