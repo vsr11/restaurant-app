@@ -9,6 +9,7 @@ import Category from "./components/Category.js";
 import Menu from "./components/Menu.js";
 import View from "./components/View.js";
 import AddMenuItem from "./components/admin/menu/AddMenuItem.js";
+import EditMenuItem from "./components/admin/menu/EditMenuItem.js";
 
 const router = createBrowserRouter([
   {
@@ -49,7 +50,10 @@ const router = createBrowserRouter([
         children: [
           {
             path: "menu",
-            children: [{ path: "add", element: <AddMenuItem /> }],
+            children: [
+              { path: "add", element: <AddMenuItem /> },
+              { path: "edit/:id?", element: <EditMenuItem /> },
+            ],
           },
         ],
       },

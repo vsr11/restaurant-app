@@ -22,6 +22,7 @@ export default function Menu() {
                   <div>Description: {x?.description}</div>
                   <div>Weight: {x?.weight}</div>
                   <div>Price: {x?.price}</div>
+                  <Link to={`/admin/menu/edit/${x?._id}`}>Edit</Link>
                 </div>
               );
             })}
