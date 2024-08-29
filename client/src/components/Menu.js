@@ -23,6 +23,7 @@ export default function Menu() {
                   <div>Weight: {x?.weight}</div>
                   <div>Price: {x?.price}</div>
                   <Link to={`/admin/menu/edit/${x?._id}`}>Edit</Link>
+                  <Link to={`/admin/menu/delete/${x?._id}`}>Delete</Link>
                 </div>
               );
             })}

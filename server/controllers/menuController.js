@@ -78,4 +78,18 @@ router.patch("/edit/:id", async (req, res, next) => {
   }
 });
 
+router.delete("/delete/:id", async (req, res, next) => {
+  try {
+    const id = req?.params?.id;
+    let menu = await Menu.findByIdAndDelete(id, req?.body);
+    if (!isEmpty(menu)) {
+      return res.json({ ok: true, data: menu });
+    } else {
+      return res.json({ ok: false, data: null });
+    }
+  } catch (e) {
+    next(e);
+  }
+});
+
 export default router;
