@@ -9,6 +9,5 @@ export const defaults = {
 };
 
 export const schemaOptions = {
-  _id: false,
   toJSON: { virtuals: true },
 };
