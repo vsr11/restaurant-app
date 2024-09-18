@@ -28,7 +28,7 @@ export default function Menu() {
               );
             })}
           </section>
-        ))}
+        )) || <h1>No food found</h1>}
     </>
   );
 }
