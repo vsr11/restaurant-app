@@ -41,4 +41,18 @@ router.post("/login", async (req, res, next) => {
   }
 });
 
+router.get("/view", async (req, res, next) => {
+  try {
+    let user = await User.find();
+
+    if (!user) {
+      return res.json({ ok: false, data: "No users found!" });
+    } else {
+      return res.status(201).json({ ok: true, data: user });
+    }
+  } catch (e) {
+    next(e);
+  }
+});
+
 export default router;
