@@ -13,6 +13,7 @@ import EditMenuItem from "./components/admin/menu/EditMenuItem.js";
 import DeleteMenuItem from "./components/admin/menu/DeleteMenuItem.js";
 import ViewUser from "./components/admin/users/ViewUser.js";
 import EditUser from "./components/admin/users/EditUser.js";
+import DeleteUser from "./components/admin/users/DeleteUser.js";
 
 const router = createBrowserRouter([
   {
@@ -64,6 +65,7 @@ const router = createBrowserRouter([
             children: [
               { index: true, element: <ViewUser /> },
               { path: "edit/:id?", element: <EditUser /> },
+              { path: "delete/:id?", element: <DeleteUser /> },
             ],
           },
         ],
