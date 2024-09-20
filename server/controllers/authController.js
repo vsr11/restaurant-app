@@ -55,4 +55,37 @@ router.get("/view", async (req, res, next) => {
   }
 });
 
+router.patch("/edit/:id", async (req, res, next) => {
+  try {
+    const id = req?.params?.id;
+    let user = await User.findOne({ id: id });
+    if (!user) {
+      return res.json({ ok: false, data: "User does not exist!" });
+    } else {
+      user = await User.findOneAndUpdate({ id: id }, req?.body);
+      if (user) {
+        return res.status(201).json({ ok: true, data: user });
+      } else {
+        return res.json({ ok: false, data: "User update failed!" });
+      }
+    }
+  } catch (e) {
+    next(e);
+  }
+});
+
+router.get("/edit/:id", async (req, res, next) => {
+  try {
+    let user = await User.findOne({ id: req?.params?.id });
+
+    if (!user) {
+      return res.json({ ok: false, data: "User does not exist!" });
+    } else {
+      return res.status(201).json({ ok: true, data: user });
+    }
+  } catch (e) {
+    next(e);
+  }
+});
+
 export default router;
