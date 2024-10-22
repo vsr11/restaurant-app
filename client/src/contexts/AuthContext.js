@@ -1,3 +1,4 @@
+import { isEmpty } from "restaurant-app-common";
 import { createContext, useEffect, useState } from "react";
 import { AUTH_COOKIE_NAME } from "../constants";
 
@@ -9,13 +10,31 @@ export const AuthProvider = ({ children }) => {
   useEffect(() => {
     const data = localStorage.getItem(AUTH_COOKIE_NAME);
     if (data) {
-      setAuth(JSON.parse(data));
+      set(JSON.parse(data));
+    } else {
+      reset();
     }
   }, []);
 
+  function set(data) {
+    setAuth(data);
+  }
+
+  function get() {
+    if (!isEmpty(auth)) {
+      return auth;
+    }
+  }
+
+  function reset() {
+    setAuth({});
+    localStorage.removeItem(AUTH_COOKIE_NAME);
+  }
+
   const values = {
-    auth,
-    setAuth,
+    set,
+    get,
+    reset,
   };
 
   return <AuthContext.Provider value={values}>{children}</AuthContext.Provider>;
