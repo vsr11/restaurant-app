@@ -6,8 +6,7 @@ export default function Logout() {
   const navigate = useNavigate();
   const ac = useContext(AuthContext);
   useEffect(() => {
-    ac.setAuth({});
-    localStorage.clear();
+    ac.reset();
     navigate("/");
   }, [ac, navigate]);
 }

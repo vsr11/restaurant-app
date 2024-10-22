@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 
 export default function Login() {
   const [login, setLogin] = useState({});
-  const c = useContext(AuthContext);
+  const ac = useContext(AuthContext);
   const navigate = useNavigate();
 
   const [d] = useFetchGeneric(`${SERVER_URL}/auth/login`, login);
@@ -19,14 +19,14 @@ export default function Login() {
   }
 
   useEffect(() => {
-    if (!isEmpty(c?.auth)) {
+    if (!isEmpty(ac?.get())) {
       navigate("/");
     }
 
-    if (d.ok) {
-      const { name, email } = d.data;
+    if (d?.ok) {
+      const { name, email } = d?.data;
       const userData = JSON.stringify({ name, email });
-      c.setAuth(userData);
+      ac.set(userData);
       localStorage.setItem(AUTH_COOKIE_NAME, userData);
     }
   }, [d, c, navigate]);
