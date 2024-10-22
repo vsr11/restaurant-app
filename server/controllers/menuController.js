@@ -15,9 +15,9 @@ router.get("/", async (req, res, next) => {
 router.get("/view/:id", async (req, res, next) => {
   try {
     const id = req?.params?.id;
-    let menu = await Menu.findById(id).lean();
-    if (!isEmpty(menu)) {
-      return res.json({ ok: true, data: menu });
+    let menu = await Menu.find({ id: id }).lean();
+    if (!isEmpty(menu[0])) {
+      return res.json({ ok: true, data: menu[0] });
     } else {
       return res.json({ ok: false, data: null });
     }
@@ -57,8 +57,8 @@ router.post("/add", async (req, res, next) => {
 router.get("/edit/:id", async (req, res, next) => {
   try {
     const id = req?.params?.id;
-    let menu = await Menu.findById(id).lean();
-    return res.json({ ok: true, data: menu });
+    let menu = await Menu.find({ id: id }).lean();
+    return res.json({ ok: true, data: menu?.[0] });
   } catch (e) {
     next(e);
   }
@@ -67,7 +67,7 @@ router.get("/edit/:id", async (req, res, next) => {
 router.patch("/edit/:id", async (req, res, next) => {
   try {
     const id = req?.params?.id;
-    let menu = await Menu.findByIdAndUpdate(id, req?.body);
+    let menu = await Menu.findOneAndUpdate({ id: id }, req?.body);
     if (!isEmpty(menu)) {
       return res.json({ ok: true, data: menu });
     } else {
@@ -81,7 +81,7 @@ router.patch("/edit/:id", async (req, res, next) => {
 router.delete("/delete/:id", async (req, res, next) => {
   try {
     const id = req?.params?.id;
-    let menu = await Menu.findByIdAndDelete(id, req?.body);
+    let menu = await Menu.findOneAndDelete({ id: id }, req?.body);
     if (!isEmpty(menu)) {
       return res.json({ ok: true, data: menu });
     } else {
