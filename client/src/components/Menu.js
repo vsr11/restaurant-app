@@ -16,11 +16,11 @@ export default function Menu() {
               return (
                 <div key={i}>
                   <div>
-                    <Link to={`/menu/view/${x?._id}`}>{x?.name}</Link>
+                    <Link to={`/menu/view/${x?.id}`}>{x?.name}</Link>
                   </div>
                   <MenuFields dataSet={x} />
-                  <Link to={`/admin/menu/edit/${x?._id}`}>Edit</Link>
-                  <Link to={`/admin/menu/delete/${x?._id}`}>Delete</Link>
+                  <Link to={`/admin/menu/edit/${x?.id}`}>Edit</Link>
+                  <Link to={`/admin/menu/delete/${x?.id}`}>Delete</Link>
                 </div>
               );
             })}

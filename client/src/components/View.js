@@ -13,14 +13,14 @@ export default function ViewMenuItem() {
       {(isLoading && <Loading />) || (
         <section id="item">
           <div>
-            <Link to={`/menu/view/${result?.data?._id}`}>
+            <Link to={`/menu/view/${result?.data?.id}`}>
               {result?.data?.name}
             </Link>
           </div>
           <MenuFields dataSet={result?.data} />
           <div>Image: {result?.data?.image}</div>
-          <Link to={`/admin/menu/edit/${result?.data?._id}`}>Edit</Link>
-          <Link to={`/admin/menu/delete/${result?.data?._id}`}>Delete</Link>
+          <Link to={`/admin/menu/edit/${result?.data?.id}`}>Edit</Link>
+          <Link to={`/admin/menu/delete/${result?.data?.id}`}>Delete</Link>
         </section>
       )}
     </>
