@@ -3,6 +3,7 @@ import { SERVER_URL } from "../constants.js";
 import { useSearchParams } from "react-router-dom";
 import { form2object } from "restaurant-app-common";
 import Loading from "./common/Loading.js";
+import MenuFields from "./common/MenuFields.js";
 
 export default function Search() {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -32,11 +33,7 @@ export default function Search() {
             {result?.data?.map((x, i) => {
               return (
                 <div key={i}>
-                  <div>Name: {x?.name}</div>
-                  <div>Category: {x?.category}</div>
-                  <div>Description: {x?.description}</div>
-                  <div>Weight: {x?.weight}</div>
-                  <div>Price: {x?.price}</div>
+                  <MenuFields dataSet={x} />
                 </div>
               );
             })}
