@@ -2,11 +2,12 @@ import useFetch from "../hooks/useFetch.js";
 import { SERVER_URL } from "../constants.js";
 import { useParams } from "react-router-dom";
 import Loading from "./common/Loading.js";
+import { isEmpty } from "restaurant-app-common";
 
 export default function Category() {
   let { cat } = useParams();
 
-  if (!cat || cat === "undefined") {
+  if (isEmpty(cat)) {
     cat = "all";
   }
 
