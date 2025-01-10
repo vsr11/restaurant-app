@@ -29,7 +29,7 @@ export default function Login() {
       ac.set(userData);
       localStorage.setItem(AUTH_COOKIE_NAME, userData);
     }
-  }, [d, c, navigate]);
+  }, [d, ac, navigate]);
 
   return (
     <>

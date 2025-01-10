@@ -7,7 +7,7 @@ import ErrorContext from "../../contexts/ErrorContext.js";
 import AuthContext from "../../contexts/AuthContext.js";
 
 export default function Register() {
-  const c = useContext(ErrorContext);
+  const ec = useContext(ErrorContext);
   const navigate = useNavigate();
   const [reg, setReg] = useState({});
   const ac = useContext(AuthContext);
@@ -28,9 +28,9 @@ export default function Register() {
     if (d?.ok) {
       navigate("/login");
     } else {
-      c?.setMessage(d?.data);
+      ec?.setMessage(d?.data);
     }
-  }, [d, c, ac, navigate]);
+  }, [d, ec, ac, navigate]);
 
   return (
     <>
